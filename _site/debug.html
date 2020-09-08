@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Debugging Your Code</title>
+  <meta name="description" content="Tutorial Notes">
+  <meta name="author" content="Mustafa Quraish">
+  <link rel="stylesheet" href="/tutorials/assets/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Source+Serif+Pro" rel="stylesheet">
+  <link rel="canonical" href="http://localhost:4000/tutorials/debug">
+  <link rel="alternate" type="application/atom+xml" title="CSCA48 Summer 2020" href="/tutorials/feed.xml">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">
+
+<!--content-begin-->
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title", style="text-align:center;">Debugging Your Code</h1>
+  </header>
+  <div class="post-content">
+
+<hr />
+<h2 id="how-do-i-know-my-program-doesnt-work">How do I know my program doesn’t work?</h2>
+<hr />
+<p>There’s no easy way to do this, except test, <em>test, and  <strong>test!</strong></em> You want to be checking your program <em>thoroughly</em>, and make sure it’s doing what you want it to do - or find out where it isn’t. Your program might not do what you expect it to do, or even crash and stop running completely.</p>
+
+<p>Most of the time (on Windows, at least) you will get a nice window that shows up and tells you that the program ended unexpectefly, however this may not always be the case.</p>
+
+<p>This is where the return value of <code class="highlighter-rouge">main()</code> comes into play. Remember how we said that we return <code class="highlighter-rouge">0</code> in main at the end of our code. This return value (also called <em>exit status</em>) is sent back to the terminal, which is stored in a variable and can be used to say if your program ended successfully or not. Whenever your program crashes, it will return with a <strong>non-zero</strong> exit status.</p>
+
+<p>On your Windows terminal, you can check the exit status of your previously run command using this:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo %errorlevel%
+</code></pre></div></div>
+
+<p>On Linux / Mac, this is the equivalent command:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo $?
+</code></pre></div></div>
+<p>If these print out a <code class="highlighter-rouge">0</code>, your program ended successfully (because it reached the <code class="highlighter-rouge">return 0</code> line in your main function). Otherwise, you know that it has crashed somewhere.</p>
+
+<hr />
+<h2 id="debugging-your-code">Debugging your code</h2>
+<hr />
+
+<p>Once you know that there’s some issue in your code, it’s time to start debugging. There’s many ways to debug your program, and also several debuggers than you can use to help you.</p>
+
+<p>I personally just use <code class="highlighter-rouge">printf()</code> statements in my code in several places to print out the values of different variables,
+to see if they are behaving the way I would expect them to, and find out where something is going wrong. Using this properly is also an important skill, because it will help you get an intuition for where your code can go wrong, and once you do this enough it can become a fairly quick way to get rid of small bugs.</p>
+
+<hr />
+<h2 id="using-gdb-a-very-quick-guide">Using GDB (a very quick guide)</h2>
+<hr />
+
+<p>If you prefer a more systematic way of debugging your code using a debugger, you can use GDB for this. Be warned that it’s not as nice as the Python debugger you may be used to from CSCA08, and you will need to run it from the Command-Line. I’m going to demonstrate some very basic usage of GDB here, however it is extremely powerful and you can learn a lot more about the things it can do <a href="http://www.yolinux.com/TUTORIALS/GDB-Commands.html">here</a>.</p>
+
+<p>If you don’t already have GDB installed, you can install it with this command on Windows (run this <code class="highlighter-rouge">C:\MinGW\bin</code>):</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mingw-get.exe install gdb
+</code></pre></div></div>
+
+<p>Here, I’m using the following code to run the example on, in case you want to follow along.</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">sum</span><span class="p">,</span> <span class="n">n</span><span class="p">;</span>
+
+  <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+  <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Sum of numbers from 1 to %d is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>First, you want to add the <code class="highlighter-rouge">-g</code> flag to your compilation command to store debug information into the executable you generate. GDB will still work without this, but it won’t give you any helpful output that you can use easily.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc -g -Wall -Werror test.c
+</code></pre></div></div>
+
+<p>Next, we will run GDB and tell it what the executable file is called (here, <code class="highlighter-rouge">a.out</code>)</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gdb ./a.out
+</code></pre></div></div>
+
+<p>This will start up GDB and load in the executable. You will not be presented with a <code class="highlighter-rouge">(gdb)</code> prompt, in which you can enter different instructions to tell the debugger what to do. GDB also has shorthand for all the common commands, and they are usually just the first letter.</p>
+
+<p>You can add breakpoints to your code on specific line numbers or function names (your program will run up till this point and then stop, you can look at the values of variables in memory, etc). If you don’t add breakpoints, your code will simply keep running until it either ends, or crashes (which can be useful to find out where your program crashed).</p>
+
+<p>In the code above, I’m going to add one breakpoint to the statement inside the loop, it is on line <code class="highlighter-rouge">9</code>. This is done using the <code class="highlighter-rouge">break</code> command, or <code class="highlighter-rouge">b</code> for short. You can also use a function name instead.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(gdb) break 9
+Breakpoint 1 at 0x669: file test.c, line 9.
+</code></pre></div></div>
+<p>Once you are done adding breakpoints, it is now time to run the program. To do this, use <code class="highlighter-rouge">run</code> or <code class="highlighter-rouge">r</code>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(gdb) run
+Starting program: /home/mustafa/Desktop/a.out 
+
+Breakpoint 1, main () at test.c:9
+9           sum += i;
+</code></pre></div></div>
+<p>This shows you where the program has stopped at, including the line of code  along with it’s line number.</p>
+
+<p>Now, we can look at the values of the variables in memory. Use the <code class="highlighter-rouge">print</code> command for this, or <code class="highlighter-rouge">p</code> for short.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(gdb) print i
+$1 = 1
+(gdb) print sum
+$2 = 0
+(gdb) print n
+$3 = 100
+</code></pre></div></div>
+<p>You can also (if you need to) change the value of variables in memory using the <code class="highlighter-rouge">set</code> command.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(gdb) set variable n = 10
+(gdb) print n
+$4 = 10
+</code></pre></div></div>
+<p>You can use the <code class="highlighter-rouge">next</code> (or <code class="highlighter-rouge">n</code>) command to run the next line of code.  In this case, we’re in a loop so it will go back to line <code class="highlighter-rouge">8</code>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(gdb) next
+8         for (i = 1; i &lt;= n; i++) {
+</code></pre></div></div>
+<p><em>Note This will <strong>not</strong> jump into a function. If you want to do this, use <code class="highlighter-rouge">step</code> instead.</em></p>
+
+<p>You can also use <code class="highlighter-rouge">continue</code> (or <code class="highlighter-rouge">c</code>) to run the code from the current line until you hit the next breakpoint.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(gdb) continue
+Continuing.
+
+Breakpoint 1, main () at test.c:9
+9           sum += i;
+</code></pre></div></div>
+
+<p>If you want to clear all breakpoints, the <code class="highlighter-rouge">clear</code> command can do that for you.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(gdb) clear
+Deleted breakpoint 1
+</code></pre></div></div>
+<p>Now, I’ll continue again, and since there’s no breakpoints, it will run the program till it exits.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(gdb) continue
+Continuing.
+Sum of numbers from 1 to 10 is 55
+[Inferior 1 (process 8554) exited normally]
+</code></pre></div></div>
+
+<p><em>Note that we only computed the sum up till <code class="highlighter-rouge">10</code> because we changed <code class="highlighter-rouge">n</code> in memory!</em></p>
+
+<hr />
+
+
+  </div>
+</article>
+
+<!--content-end-->
+
+    </div>
+  </main>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="nav-button"><span class="nav-icon"></span></label>
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="sidebar">
+    <div class="wrapper">
+      <header class="site-header">
+        <a class="site-title" href="/tutorials/">
+          <h2>CSCA48 Summer 2020</h2>
+          <p class="meta">Tutorial Notes</p>
+        </a>
+      </header>
+      <nav class="site-nav">
+
+<!--navigation-content-begin-->
+<ul>
+  <li><a href="/tutorials/W1/">Week 1</a></li>
+  <li><a href="/tutorials/W2/">Week 2</a></li>
+  <li><a href="/tutorials/W3/">Week 3</a></li>
+  <li><a href="/tutorials/W4/">Week 4</a></li>
+</ul>
+<h3>Extras</h3>
+<ul>
+  <li><a href="/tutorials/commandline">Command Line</a></li>
+  <li><a class="active" href="/tutorials/debug">Debugging</a></li>
+</ul>
+<!--navigation-content-end-->
+
+      </nav>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

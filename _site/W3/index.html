@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 3 Tutorial</title>
+  <meta name="description" content="Tutorial Notes">
+  <meta name="author" content="Mustafa Quraish">
+  <link rel="stylesheet" href="/tutorials/assets/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Source+Serif+Pro" rel="stylesheet">
+  <link rel="canonical" href="http://localhost:4000/tutorials/W3/">
+  <link rel="alternate" type="application/atom+xml" title="CSCA48 Summer 2020" href="/tutorials/feed.xml">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">
+
+<!--content-begin-->
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title", style="text-align:center;">Week 3 Tutorial</h1>
+  </header>
+  <div class="post-content">
+
+<hr />
+
+<p align="center"> <a href="https://youtu.be/6YJWDlFQyWc"> Recorded video (courtesy Will) </a> </p>
+
+<hr />
+
+<h1 id="c-memory-model-and-arrays">C Memory Model and Arrays</h1>
+
+<hr />
+
+<h2 id="memory-model-in-c">Memory Model in C</h2>
+
+<hr />
+
+<p>Memory in C can be thought of as a locker room! We have one locker for each variable, all locker boxes are numbered in increasing order and they can only be accessed by the right user.</p>
+
+<p>Associated with each locker is important information like the memory address (locker number, which is unique), variable name, variable type and the variable value. Here’s a picture you can keep in your mind:</p>
+
+<p><img src="/tutorials/W3/MMEmpty.png" alt="empty" /></p>
+
+<hr />
+
+<p>Remember that lockers are created in memory automatically for:</p>
+<ul>
+  <li>Declared variables</li>
+  <li>Input parameters to functions</li>
+  <li>Storing return values of functions</li>
+</ul>
+
+<blockquote>
+  <p>In the next unit, we will learn about explicitly asking for some lockers in C!</p>
+</blockquote>
+
+<hr />
+
+<p>Let’s try an example and draw the diagram of the memory model for the following piece of code, right at the point where the result is returned (right before releasing the spaced reserved for the funcion)</p>
+
+<ul>
+  <li>Remember that each function gets it’s own area of lockers!</li>
+</ul>
+
+<blockquote>
+  <p>If you haven’t already, it would be a good time to go read the Unit 2 notes before attempting these yourself.</p>
+</blockquote>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span>
+<span class="kt">float</span> <span class="nf">div_by_two</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">float</span> <span class="n">result</span><span class="p">;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">s</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="c1">// Draw the memory model at this point!
+</span>    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>      
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">result</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">;</span>
+    
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">div_by_two</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span>
+    
+    <span class="n">result</span> <span class="o">=</span> <span class="n">z</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"The result is: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>If you’re working on your iPad or digitally, you can use this template to draw on:</p>
+
+<p><img src="/tutorials/W3/MMTemp.png" alt="template" /></p>
+
+<hr />
+
+<h2 id="arrays--strings">Arrays &amp; Strings</h2>
+
+<hr />
+
+<h3 id="arrays">Arrays</h3>
+
+<ul>
+  <li>
+    <p>Arrays are a fixed-size collection of contiguous boxes (in memory) of the same data type.</p>
+  </li>
+  <li>
+    <p>A <em>very</em> important thing to remember is that when arrays are passed to functions by telling its location in memory. This means that the function directly access and modifies the original array. It does <strong>not</strong> make a copy.</p>
+  </li>
+  <li>
+    <p>Remember that unlike Python, C does not warn you about using out-of-bounds indeces so it is your responsibility to be careful on how you are indexing, otherwise you will access elements outside of the array.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="strings">Strings</h3>
+
+<p>Strings are also known as arrays of characterss, but with an special add-on: the end-of-string delimeter <code class="highlighter-rouge">\0</code>. The end-of-string delimeter indicates when the string ends.</p>
+
+<p>Let’s look at the following piece of code, what do you think it will print out?</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">original</span><span class="p">[</span><span class="mi">1024</span><span class="p">]</span> <span class="o">=</span> <span class="s">"This is the original string!"</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">unoriginal</span><span class="p">[</span><span class="mi">1024</span><span class="p">]</span> <span class="o">=</span> <span class="s">"And this is another string!"</span><span class="p">;</span>
+
+    <span class="c1">// We want `original` to be the same string as `unoriginal`
+</span>    <span class="n">original</span> <span class="o">=</span> <span class="n">unoriginal</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">original</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>How about the following piece of code; what does it do?</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">array_one</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">array_two</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">array_two</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// We want to initialize the first 5 elements of array_one
+</span>    <span class="c1">// to be the elements of array_two
+</span>    <span class="n">array_one</span> <span class="o">=</span> <span class="n">array_two</span><span class="p">;</span>
+    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>As we could see, both of them do not compile.</p>
+
+<details> 
+  <summary>How can we fix them in order to make them work? </summary>
+   - You have to do it yourself. If we want to make a copy of an array, we have to do it each element at once. We will see other build-in functions later, that can make our job easier.
+</details>
+
+<hr />
+
+<h1 id="exercise">Exercise</h1>
+
+<hr />
+
+<p>Write a function that takes two input strings and <em>swaps</em> their content. Note that the size of the arrays for each string is 1024, but the strings could have a different length.</p>
+
+<p>Here’s a template for you to complete:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span>
+<span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span> <span class="p">...</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">first</span><span class="p">[</span><span class="mi">1024</span><span class="p">]</span> <span class="o">=</span> <span class="s">"Hello!"</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">second</span><span class="p">[</span><span class="mi">1024</span><span class="p">]</span> <span class="o">=</span> <span class="s">"It's beginning to look a lot like Christmas"</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"F: %s - S: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">);</span>
+    <span class="c1">// Expected:
+</span>    <span class="c1">// F: Hello! - S: It's beginning to look a lot like Christmas
+</span>
+    <span class="n">swap</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"F: %s - S: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">);</span>
+    <span class="c1">// Expected:
+</span>    <span class="c1">// F: It's beginning to look a lot like Christmas - S: Hello!
+</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="lets-go-further">Let’s go further</h2>
+
+<p>Write a function <code class="highlighter-rouge">strfind()</code> that <em>searches</em> for a given string in the specified main string, and returns the index of the first occurrence of the given string. If there is no match it returns <code class="highlighter-rouge">-1</code>. This will be extremely useful in your exercie 1. Here is some example output for this function:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">strfind</span><span class="p">(</span><span class="s">"My name is Angela"</span><span class="p">,</span> <span class="s">"name"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="mi">3</span>
+<span class="n">strfind</span><span class="p">(</span><span class="s">"My name is Angela"</span><span class="p">,</span> <span class="s">"Mustafa"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="additional-exercises">Additional Exercises</h1>
+
+<hr />
+
+<p>These are not necessary, but give you an avenue to develop what you did in this tutorial further.</p>
+
+<hr />
+
+<ol>
+  <li>
+    <p>Once you have completed exercise 1, try to use the solution to implement a <code class="highlighter-rouge">replaceAllSubstrings()</code> function that replaces <em>every</em> occurence of a substring with something else. Implementation details are left up to you - you do not have to submit this.</p>
+  </li>
+  <li>
+    <p>Write a function that takes in a 2-dimensional array (ie, an array of arrays) representing a matrix, and then transposes it. <a href="/tutorials/W3/transpose_matrix.c">Here’s some starter code.</a></p>
+  </li>
+</ol>
+
+<hr />
+
+
+  </div>
+</article>
+
+<!--content-end-->
+
+    </div>
+  </main>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="nav-button"><span class="nav-icon"></span></label>
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="sidebar">
+    <div class="wrapper">
+      <header class="site-header">
+        <a class="site-title" href="/tutorials/">
+          <h2>CSCA48 Summer 2020</h2>
+          <p class="meta">Tutorial Notes</p>
+        </a>
+      </header>
+      <nav class="site-nav">
+
+<!--navigation-content-begin-->
+<ul>
+  <li><a href="/tutorials/W1/">Week 1</a></li>
+  <li><a href="/tutorials/W2/">Week 2</a></li>
+  <li><a class="active" href="/tutorials/W3/">Week 3</a></li>
+  <li><a href="/tutorials/W4/">Week 4</a></li>
+</ul>
+<h3>Extras</h3>
+<ul>
+  <li><a href="/tutorials/commandline">Command Line</a></li>
+  <li><a href="/tutorials/debug">Debugging</a></li>
+</ul>
+<!--navigation-content-end-->
+
+      </nav>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

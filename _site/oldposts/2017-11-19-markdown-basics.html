@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Markdown Basics</title>
+  <meta name="description" content="Syntax for creating content">
+  <meta name="author" content="Mustafa Quraish">
+  <link rel="stylesheet" href="/tutorials/assets/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Source+Serif+Pro" rel="stylesheet">
+  <link rel="canonical" href="http://localhost:4000/tutorials/oldposts/2017-11-19-markdown-basics">
+  <link rel="alternate" type="application/atom+xml" title="CSCA48 Summer 2020" href="/tutorials/feed.xml">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">
+
+<!--content-begin-->
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title", style="text-align:center;">Markdown Basics</h1>
+  </header>
+  <div class="post-content">
+
+<p>Here are some basic syntax to create posts and pages. For the complete Markdown syntax see <a href="http://daringfireball.net/projects/markdown/">John Gruber’s original specification</a> and the <a href="https://kramdown.gettalong.org/quickref.html">kramdown quick reference</a> - kramdown is the Markdown renderer used by Jekyll and supports some Markdown extensions. For more details see the <a href="https://kramdown.gettalong.org/syntax.html">complete kramdown syntax</a>.</p>
+
+<p>Don’t use H1 headers in you posts and pages - every HTML page should have only one H1 header - and this H1 header is already occupied by your post or page title. As a best practice use only H2 and H3 headers - everything else is too deep. If you need such deep levels consider to split your post in multiple parts.</p>
+
+<div class="language-md highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="gu">## H2 Header</span>
+
+<span class="gu">### H3 Header</span>
+
+A paragraph with <span class="ge">*emphasized text*</span>, <span class="gs">**bold text**</span>, <span class="gs">***emphasized and bold**</span><span class="err">*</span>.
+As an alternative for the star you can use the _underscore_. Text could also be
+marked as ~~strikethrough~~ with two tildes.
+<span class="p">
+*</span> An unordered list item
+<span class="p">  -</span> Could also start with a minus sign
+<span class="p">  +</span> Or a plus sign
+<span class="p">*</span> An inline style link: <span class="p">[</span><span class="nv">Jekyll</span><span class="p">](</span><span class="sx">https://jekyllrb.com/</span> <span class="nn">"With a title"</span><span class="p">)</span>  
+<span class="p">*</span> A reference style link: <span class="p">[</span><span class="nv">Markdown Syntax</span><span class="p">][</span><span class="ss">1</span><span class="p">]</span>
+<span class="p">
+1.</span> An ordered list item
+<span class="p">1.</span> Another one
+<span class="p">  -</span> Unordered sub item
+<span class="p">1.</span> You don't need correct numbers
+<span class="p">1.</span> In the rendered HTML the numbers are correct
+<span class="gt">
+&gt; A block quote</span>
+<span class="gt">&gt;</span>
+<span class="gt">&gt; &gt; Nesting is possible</span>
+<span class="gt">&gt;</span>
+<span class="gt">&gt; &gt; &gt; Even multiple levels</span>
+<span class="gt">&gt;</span>
+<span class="gt">&gt; Back to base level</span>
+
+A picture with an optional image title:
+
+<span class="p">![</span><span class="nv">Google PageSpeed</span><span class="p">](</span><span class="sx">/tutorials/assets/images/page-speed-mobile.png</span> <span class="nn">"Image title"</span><span class="p">)</span>
+
+Some source code:
+<span class="p">```</span><span class="nl">js</span>
+<span class="kd">var</span> <span class="nx">example</span> <span class="o">=</span> <span class="s2">"dummy JavaScript code"</span><span class="p">;</span>
+<span class="p">```</span>
+
+A horizontal row:
+<span class="p">
+---
+</span>
+<span class="p">[</span><span class="ss">1</span><span class="p">]:</span> <span class="sx">https://daringfireball.net/projects/markdown/syntax</span>
+
+</code></pre></div></div>
+
+<p><strong><em>Result:</em></strong></p>
+
+<h2 id="h2-header">H2 Header</h2>
+
+<h3 id="h3-header">H3 Header</h3>
+
+<p>A paragraph with <em>emphasized text</em>, <strong>bold text</strong>, <strong><em>emphasized and bold</em></strong>.
+As an alternative for the star you can use the <em>underscore</em>. Text could also be
+marked as <del>strikethrough</del> with two tildes.</p>
+
+<ul>
+  <li>An unordered list item
+    <ul>
+      <li>Could also start with a minus sign</li>
+      <li>Or a plus sign</li>
+    </ul>
+  </li>
+  <li>An inline style link: <a href="https://jekyllrb.com/" title="With a title">Jekyll</a></li>
+  <li>A reference style link: <a href="https://daringfireball.net/projects/markdown/syntax">Markdown Syntax</a></li>
+</ul>
+
+<ol>
+  <li>An ordered list item</li>
+  <li>Another one
+    <ul>
+      <li>Unordered sub item</li>
+    </ul>
+  </li>
+  <li>You don’t need correct numbers</li>
+  <li>In the rendered HTML the numbers are correct</li>
+</ol>
+
+<blockquote>
+  <p>A block quote</p>
+
+  <blockquote>
+    <p>Nesting is possible</p>
+  </blockquote>
+
+  <blockquote>
+    <blockquote>
+      <p>Even multiple levels</p>
+    </blockquote>
+  </blockquote>
+
+  <p>Back to base level</p>
+</blockquote>
+
+<p>A picture with an optional image title:</p>
+
+<p><img src="/tutorials/assets/images/page-speed-mobile.png" alt="Google PageSpeed" title="Image title" /></p>
+
+<p>Some source code:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">example</span> <span class="o">=</span> <span class="s2">"dummy JavaScript code"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>A horizontal row:</p>
+
+<hr />
+
+<p>Still reading? Congratulations: You know now the syntax for 80 percent of the normal content creation. Feels natural or what do you think?</p>
+
+<p>Happy writing ;-)<br />
+Ottmar</p>
+
+
+  </div>
+</article>
+
+<!--content-end-->
+
+    </div>
+  </main>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="nav-button"><span class="nav-icon"></span></label>
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="sidebar">
+    <div class="wrapper">
+      <header class="site-header">
+        <a class="site-title" href="/tutorials/">
+          <h2>CSCA48 Summer 2020</h2>
+          <p class="meta">Tutorial Notes</p>
+        </a>
+      </header>
+      <nav class="site-nav">
+
+<!--navigation-content-begin-->
+<ul>
+  <li><a href="/tutorials/W1/">Week 1</a></li>
+  <li><a href="/tutorials/W2/">Week 2</a></li>
+  <li><a href="/tutorials/W3/">Week 3</a></li>
+  <li><a href="/tutorials/W4/">Week 4</a></li>
+</ul>
+<h3>Extras</h3>
+<ul>
+  <li><a href="/tutorials/commandline">Command Line</a></li>
+  <li><a href="/tutorials/debug">Debugging</a></li>
+</ul>
+<!--navigation-content-end-->
+
+      </nav>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

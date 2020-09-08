@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Img2Turtle</title>
+</head>
+
+<body>
+  <h2>Convert Image to Turtle</h2>
+  <p id="status">OpenCV.js is loading...</p>
+
+  <div>
+    <table cellpadding="0" cellspacing="0" width="0" border="0">
+      <tbody>
+        <tr>
+          <td>
+            <img id="imageSrc" alt="No Image" />
+          </td>
+          <td>
+            <canvas id="canvasOutput"></canvas>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="caption">Input</div>
+          </td>
+          <td>
+            <div class="caption">Result</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <input type="file" id="fileInput" name="file" accept="image/*"> <input type="checkbox" id="scales" name="scales"
+  onclick="edgeCheck()" checked>
+<label for="scales">Edge Detection</label>
+
+<input type="range" min="0" max="255" value="128" class="slider" id="myRange">
+<label for="myRange">Threshold</label>
+
+<br>
+
+  <div>
+    File name: <input id="fileName" type="text" value="out.txt">
+    <button onclick="saveClick()">Save</button>
+  </div>
+
+  <script src="main.js"></script>
+  <script async src="opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+</body>
+
+
+
+
+</html>

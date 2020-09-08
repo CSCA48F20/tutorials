@@ -1,0 +1,96 @@
+/**
+ * Page content
+ */
+
+.page-overlay {
+    background: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    display: none;
+}
+
+.page-content {
+    float: right;
+    width: calc(100% - 250px);
+    padding: $spacing-unit;
+    .wrapper {
+        display: block;
+        max-width: $content-max-width;
+        margin: 0 auto;
+        padding: 0;
+        @extend %clearfix;
+    }
+}
+
+.page-heading {
+    font-size: 24px;
+}
+
+.post-list {
+    margin-left: 0;
+    list-style: none;
+    line-height: $small-line-height;
+    h2 {
+        margin-bottom: 0;
+    }
+    >li {
+        margin-bottom: $spacing-unit;
+    }
+}
+
+.post-list-archive {
+    margin-left: 0;
+    list-style: none;
+    line-height: $small-line-height;
+    >li {
+        margin-bottom: $spacing-unit/2;
+    }
+}
+
+.post-meta {
+    font-size: $small-font-size;
+    color: $grey-color;
+}
+
+.post-link {
+    display: block;
+    font-size: 24px;
+    text-decoration: $link-text-decoration;
+}
+
+
+/**
+ * Posts
+ */
+
+.post-header {
+    margin-bottom: $spacing-unit;
+    @extend %clearfix;
+}
+
+.post-title {
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+.post-subtitle {
+    line-height: $small-line-height;
+    font-style: italic;
+}
+
+.post-content {
+    margin-bottom: $spacing-unit;
+}
+
+
+/**
+ * Clearfix
+ */
+
+%clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}

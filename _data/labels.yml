@@ -1,0 +1,9 @@
+categories:
+  example: Examples
+  features: Features
+  general: General
+  slides: Slides
+tags:
+  jekyll: Jekyll
+  markdown: Markdown
+  reveal: Reveal.js

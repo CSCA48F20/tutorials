@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example Slideshow</title>
+  <meta name="description" content="A basic example for the Reveal.js integration">
+  <meta name="author" content="Mustafa Quraish">
+  <link rel="stylesheet" href="/tutorials/assets/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Source+Serif+Pro" rel="stylesheet">
+  <link rel="canonical" href="http://localhost:4000/tutorials/oldposts/2017-11-22-example-slideshow">
+  <link rel="alternate" type="application/atom+xml" title="CSCA48 Summer 2020" href="/tutorials/feed.xml">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">
+
+<!--content-begin-->
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title", style="text-align:center;">Example Slideshow</h1>
+  </header>
+  <div class="post-content">
+
+<p>This post is an example to show you how to integrate an existing slideshow.</p>
+
+<p>You call simply an include with the path to the slideshow:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span><span class="na">slides</span><span class="p">.</span><span class="na">html</span><span class="w"> </span><span class="na">path</span><span class="o">=</span><span class="s2">"/slides/2017-11-22-example-presentation"</span><span class="w"> </span><span class="p">%}</span>
+</code></pre></div></div>
+
+<p>As a result you get all the necessary informations to start your slides - we do the include call right now:</p>
+
+<p><a href="/tutorials/slides/2017-11-22-example-presentation/" target="_blank">Open HTML presentation in a new window/tab</a></p>
+
+<div class="post-meta">
+  <p>You need a modern browser with activated JavaScript. Navigation tips:</p>
+  <ul>
+    <li><code>Space</code> = Next slide</li>
+    <li><code>Shift</code> + <code>Space</code> = Previous slide</li>
+    <li><code>Esc</code> = Overview all slides</li>
+    <li><code>?</code> = Overview all keyboard shortcuts</li>
+    <li>All links are opened in a new window/tab</li>
+    <li><a href="/tutorials/slides/2017-11-22-example-presentation/slides.html">Raw HTML Version with notes</a></li>
+    <li><a href="/tutorials/slides/2017-11-22-example-presentation/slides.md">Raw Markdown Version</a></li>
+  </ul>
+</div>
+
+<p>For more informations about the Reveal.js integration please see the features page <a href="/tutorials/features#revealjs-slideshow-integration">here</a>.</p>
+
+<p>For a bigger example you can also have a look at <a href="/tutorials/posts/2017-11-05-dr-jekyll-and-mr-markdown-bloggen-fuer-entwickler">this presentation</a> from my colleague Markus Dötsch and me, which was shown by Markus on the <a href="https://2017.doag.org/en/home/">DOAG Conference + Exhibition 2017</a> (in German, sorry…).</p>
+
+<p>Happy presenting ;-)<br />
+Ottmar</p>
+
+
+
+  </div>
+</article>
+
+<!--content-end-->
+
+    </div>
+  </main>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="nav-button"><span class="nav-icon"></span></label>
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="sidebar">
+    <div class="wrapper">
+      <header class="site-header">
+        <a class="site-title" href="/tutorials/">
+          <h2>CSCA48 Summer 2020</h2>
+          <p class="meta">Tutorial Notes</p>
+        </a>
+      </header>
+      <nav class="site-nav">
+
+<!--navigation-content-begin-->
+<ul>
+  <li><a href="/tutorials/W1/">Week 1</a></li>
+  <li><a href="/tutorials/W2/">Week 2</a></li>
+  <li><a href="/tutorials/W3/">Week 3</a></li>
+  <li><a href="/tutorials/W4/">Week 4</a></li>
+</ul>
+<h3>Extras</h3>
+<ul>
+  <li><a href="/tutorials/commandline">Command Line</a></li>
+  <li><a href="/tutorials/debug">Debugging</a></li>
+</ul>
+<!--navigation-content-end-->
+
+      </nav>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

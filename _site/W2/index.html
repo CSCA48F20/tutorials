@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 2 Tutorial</title>
+  <meta name="description" content="Tutorial Notes">
+  <meta name="author" content="Mustafa Quraish">
+  <link rel="stylesheet" href="/tutorials/assets/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Source+Serif+Pro" rel="stylesheet">
+  <link rel="canonical" href="http://localhost:4000/tutorials/W2/">
+  <link rel="alternate" type="application/atom+xml" title="CSCA48 Summer 2020" href="/tutorials/feed.xml">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">
+
+<!--content-begin-->
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title", style="text-align:center;">Week 2 Tutorial</h1>
+  </header>
+  <div class="post-content">
+
+<hr />
+
+<p align="center"> <a href="https://www.youtube.com/playlist?list=PLlTc---1rMDX_e0lH5jX4VZy0nGFeYDbb"> Recorded videos (courtesy Will) </a> </p>
+
+<hr />
+
+<h1 id="c-basics">C Basics</h1>
+
+<hr />
+
+<p>You all should already have (successfully) attempted exercise 0, and have <code class="highlighter-rouge">gcc</code> working on your local machines. Today, we’re going to go over more C fundamentals, and then look at a few exercises. Here’s a list of few things you should already know:</p>
+
+<hr />
+
+<h2 id="variables">Variables</h2>
+
+<hr />
+
+<ul>
+  <li>To declare a variable, you <em>need</em> to explicitly give it a type (which can never be changed). <strong>Declaration</strong> means you are simply telling the compiler that this variable exists. A variable <em>declaration</em> looks like this:
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// type   name
+</span>  <span class="kt">double</span> <span class="n">myDouble</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Giving the variable a value is called <em>initialization</em>. Unlike Python, declaration and initialization are seprate in C. However, you can usually put them in one line. This looks as follows:</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="n">myDouble</span><span class="p">;</span>     <span class="c1">// Declaration
+</span><span class="n">myDouble</span> <span class="o">=</span> <span class="mi">3</span><span class="p">.</span><span class="mi">14</span><span class="p">;</span>     <span class="c1">// Initialization
+</span>
+<span class="kt">int</span> <span class="n">myInt</span> <span class="o">=</span> <span class="mi">1729</span><span class="p">;</span>    <span class="c1">// But can also do this...
+</span></code></pre></div></div>
+
+<ul>
+  <li>There are a few basic data types in C:
+    <ol>
+      <li><code class="highlighter-rouge">int</code> - Integer</li>
+      <li><code class="highlighter-rouge">long</code> - (Long) Integers, much bigger range of values</li>
+      <li><code class="highlighter-rouge">char</code> - Characters; effectively an integer from -128 to 127</li>
+      <li><code class="highlighter-rouge">float</code> - A floating point number (fractional)</li>
+      <li><code class="highlighter-rouge">double</code> - A more precise floating point number (uses <em>double</em> the space)</li>
+    </ol>
+
+    <p>You will also eventually see variables defined as <code class="highlighter-rouge">unsigned int</code>, <code class="highlighter-rouge">unsigned char</code>, etc. When <code class="highlighter-rouge">unsigned</code> is used with one of the types that stores integers (<code class="highlighter-rouge">int</code>, <code class="highlighter-rouge">long</code> and <code class="highlighter-rouge">char</code>), it simply means that the variable only stores <strong>postitive</strong> values. (it has no sign). This is helpful to (1) avoid errors with negative numbers and (2) It lets us store more positive numbers in the same amount of space.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="functions">Functions</h2>
+
+<hr />
+
+<p>Remember that a function <em>declaration</em> has the following parts (in order):</p>
+<ul>
+  <li>Return type of the function</li>
+  <li>Name of the function</li>
+  <li>Types of the input parameters (optionally names)</li>
+</ul>
+
+<p><em>However, when *defining</em> a function you must also give the parameters names.*</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">mySum</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>            <span class="c1">// A valid declaration
+</span>
+<span class="kt">int</span> <span class="nf">mySum</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>               <span class="c1">// A function definition
+</span><span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">myProduct</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>               <span class="c1">// Can do them together
+</span><span class="p">}</span>
+</code></pre></div></div>
+<p>Note that it may not always be a good idea to define and declare your function together. You will see issues arise with this as we move forward in the course.</p>
+
+<hr />
+
+<h2 id="conditionals">Conditionals</h2>
+
+<hr />
+
+<p>Nothing fancy here, you know what to expect. Make sure you have <code class="highlighter-rouge">()</code> around your conditions.</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">condition</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">condition</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="loops">Loops</h2>
+
+<hr />
+
+<ul>
+  <li>For loops have 3 parts: initialization, condition and increment. Here is an example:
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// This is similar to `for i in range(n)`
+</span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span>    <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="p">...</span> <span class="n">body</span> <span class="p">...</span> <span class="p">}</span>
+<span class="c1">//     init.      cond.     inc.
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<blockquote>
+  <p><code class="highlighter-rouge">i++</code> is a shorthand for saying ‘increment the value of <code class="highlighter-rouge">i</code> by 1, and return the <strong>old</strong> value’. Since here we do not actually care about the return value of the increment (<code class="highlighter-rouge">i++</code>), it serves the purpose of simply <code class="highlighter-rouge">i = i + 1</code>.</p>
+</blockquote>
+
+<blockquote>
+  <p>Similarly, you can also do <code class="highlighter-rouge">++i</code>, which is shorthand for ‘increment the value of <code class="highlighter-rouge">i</code>, and return the <strong>new</strong> value’.</p>
+</blockquote>
+
+<ul>
+  <li>While loops have just the condition. The initialization and increment need to be done by you:
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="c1">//     cond.
+</span><span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>  
+  <span class="p">...</span> <span class="n">body</span> <span class="p">...</span> 
+  <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="libraries">Libraries</h2>
+
+<hr />
+
+<p>You won’t always have all the functions available to you directly. Sometimes it is a good idea to use functions implemented by others which are part of a library instead of implementing them yourself. <code class="highlighter-rouge">stdio.h</code> is a library we use which is responsible for handling input / output for example. Here we will also use the <code class="highlighter-rouge">math.h</code> library. Import a library using:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;library.h&gt;
+</span></code></pre></div></div>
+<blockquote>
+  <p>Note that <code class="highlighter-rouge">#include</code> is what is called a ‘compiler directive’. It basically takes all the content of the file <code class="highlighter-rouge">library.h</code> (which <code class="highlighter-rouge">gcc</code> knows where to find), and replaces the line with it.</p>
+</blockquote>
+
+<hr />
+
+<h1 id="exercise">Exercise</h1>
+
+<hr />
+
+<p>Write a program that prints out a graph of the function sin(x) for values of x from 0 to 2π in increments of 0.25. Here’s some example output (courtesy Angela):</p>
+
+<p><img src="/tutorials/W2/W2_Ex1.png" alt="ex1" /></p>
+
+<p>and here’s some code you can fill in if you’re having trouble doing it all yourself (it’s okay! You’re just getting started).</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;  
+#include &lt;math.h&gt;   // Import math for sin()!
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">float</span> <span class="n">pi</span> <span class="o">=</span> <span class="n">M_PI</span><span class="p">;</span>   <span class="c1">// This is defined for us in math.h
+</span> 
+  <span class="c1">// Main loop over the x values
+</span>  <span class="k">for</span> <span class="p">(</span><span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="n">____</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">______</span><span class="p">;</span> <span class="n">x</span> <span class="o">+=</span> <span class="n">_____</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// You will need another loop inside here...
+</span>
+    
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="spicing-it-up-a-little">Spicing it up a little</h2>
+
+<hr />
+
+<p>Now, modify your existing solution of the previous part and have a vertical line that represents the x-axis, in other words, have a line that corresponds to y=0.</p>
+
+<p><img src="/tutorials/W2/W2_Ex2.png" alt="ex2" /></p>
+
+<hr />
+
+<h1 id="key-takeaways">Key Takeaway(s)</h1>
+
+<hr />
+<ul>
+  <li>
+    <p>Every variable in C has an associated data type that cannot be changed. You should be familiar with the different data types C presents.</p>
+  </li>
+  <li>
+    <p>Understand how to declare a function. Remember that, unlike Python, you need to begin the declaration with a return type.</p>
+  </li>
+  <li>
+    <p>Conditionals are very similar to Python. Familiarize yourself with the standard comparison operators (i.e. <code class="highlighter-rouge">==</code>, <code class="highlighter-rouge">!=</code>, <code class="highlighter-rouge">&lt;</code>, <code class="highlighter-rouge">&gt;</code>) and logical operators (i.e. <code class="highlighter-rouge">||</code> (which is a logical OR) , <code class="highlighter-rouge">&amp;&amp;</code> (which is a logical AND)).</p>
+  </li>
+  <li>
+    <p>Be familiar with defining a for loop and while loop. Understanding the difference between the two is also important.</p>
+  </li>
+  <li>
+    <p>Similar to Python, C also has libraries in which you can use. You can use a library by typing <code class="highlighter-rouge">#include&lt;library.h&gt;</code>.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h1 id="additional-exercises">Additional Exercises</h1>
+
+<hr />
+
+<p>These are not necessary, but give you an avenue to develop what you did in this tutorial into something a lot more impressive!</p>
+
+<hr />
+
+<ol>
+  <li>
+    <p>Add variables that let you change how long the sin wave is, how wide it is, and how much it is offset from the left side of the screen. Also give the user the option to draw the wave horizontally.</p>
+  </li>
+  <li>
+    <p>Based on whether the value is increasing / decreasing, print out <code class="highlighter-rouge">\</code>, <code class="highlighter-rouge">|</code>, <code class="highlighter-rouge">-</code>, <code class="highlighter-rouge">/</code> instead of just the asterisks (<code class="highlighter-rouge">*</code>). Make it look more curve-like. Details are left up to you.</p>
+  </li>
+  <li>
+    <p>Generalize the code so that it can plot out any (reasonable) function like sin. You might have to ask the user to enter bounds on the <code class="highlighter-rouge">x</code> and <code class="highlighter-rouge">y</code> axes between which you plot them.</p>
+  </li>
+</ol>
+
+
+  </div>
+</article>
+
+<!--content-end-->
+
+    </div>
+  </main>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="nav-button"><span class="nav-icon"></span></label>
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="sidebar">
+    <div class="wrapper">
+      <header class="site-header">
+        <a class="site-title" href="/tutorials/">
+          <h2>CSCA48 Summer 2020</h2>
+          <p class="meta">Tutorial Notes</p>
+        </a>
+      </header>
+      <nav class="site-nav">
+
+<!--navigation-content-begin-->
+<ul>
+  <li><a href="/tutorials/W1/">Week 1</a></li>
+  <li><a class="active" href="/tutorials/W2/">Week 2</a></li>
+  <li><a href="/tutorials/W3/">Week 3</a></li>
+  <li><a href="/tutorials/W4/">Week 4</a></li>
+</ul>
+<h3>Extras</h3>
+<ul>
+  <li><a href="/tutorials/commandline">Command Line</a></li>
+  <li><a href="/tutorials/debug">Debugging</a></li>
+</ul>
+<!--navigation-content-end-->
+
+      </nav>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

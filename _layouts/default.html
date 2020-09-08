@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | default: site.title | escape }}</title>
+  <meta name="description" content="{{ page.subtitle | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  <meta name="author" content="{% include author-meta-content author=page.author %}">
+  <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Source+Serif+Pro" rel="stylesheet">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | relative_url }}">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">
+
+<!--content-begin-->
+{{ content }}
+<!--content-end-->
+
+    </div>
+  </main>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="nav-button"><span class="nav-icon"></span></label>
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="sidebar">
+    <div class="wrapper">
+      <header class="site-header">
+        <a class="site-title" href="{{ '/' | relative_url }}">
+          <h2>{{ site.title | smartify }}</h2>
+          <p class="meta">{{ site.description | smartify }}</p>
+        </a>
+      </header>
+      <nav class="site-nav">
+
+<!--navigation-content-begin-->
+{%- if site.sidebar.pages %}{% include nav-list-pages-main.html %}{% endif %}
+{%- if site.sidebar.categories %}{% include nav-list-categories.html header=true %}{% endif %}
+{%- if site.sidebar.tags %}{% include nav-list-tags.html header=true %}{% endif %}
+{%- if site.sidebar.contact %}{% include nav-list-contact.html header=true %}{% endif %}
+{%- if site.sidebar.legal %}{% include nav-list-pages-legal.html header=true %}{% endif %}
+<!--navigation-content-end-->
+
+      </nav>
+    </div>
+  </div>
+
+{% if jekyll.environment == 'production' and site.google_analytics %}{% include google-analytics.html %}{% endif %}
+</body>
+
+</html>

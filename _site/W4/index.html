@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 4 Tutorial</title>
+  <meta name="description" content="Tutorial Notes">
+  <meta name="author" content="Mustafa Quraish">
+  <link rel="stylesheet" href="/tutorials/assets/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Source+Serif+Pro" rel="stylesheet">
+  <link rel="canonical" href="http://localhost:4000/tutorials/W4/">
+  <link rel="alternate" type="application/atom+xml" title="CSCA48 Summer 2020" href="/tutorials/feed.xml">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">
+
+<!--content-begin-->
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title", style="text-align:center;">Week 4 Tutorial</h1>
+  </header>
+  <div class="post-content">
+
+<hr />
+
+<p align="center"> <a href="https://www.youtube.com/playlist?list=PLKjkL6I7UpX8kEaSQZZ0aoev1GjX1hF-U"> Recorded videos (courtesy Mustafa) </a> </p>
+
+<hr />
+
+<h1 id="pointers">Pointers!</h1>
+
+<p>Before you get scared off - pointers are just variables! The only thing different about them is that the store the <em>memory addresses</em> (or box numbers) of other variables - which we can decide. When we create a pointer, its type must match the variable type.</p>
+
+<p>For example, if you want to initialize the pointer <code class="highlighter-rouge">p</code> that will store the address of an integer, we can do the following:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Note that in this case we have said <code class="highlighter-rouge">p</code> points to an integer. <code class="highlighter-rouge">NULL</code> is the default value we give something. Think of it as saying “Does not point to anything”.</p>
+
+<hr />
+
+<h2 id="how-do-we-use-pointers">How do we use pointers?</h2>
+
+<hr />
+
+<p>We first need to <strong>assign</strong> a variable to our pointer. For that we use the <code class="highlighter-rouge">&amp;</code> operator. The <code class="highlighter-rouge">&amp;</code> operator is the <em>address-of</em> the variable we are referencing.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// We have already declared our pointer above.
+// Now, we are going to store the address of an integer.
+</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>We use pointers to <strong>access</strong> the value from the variable that they are pointing to.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// In this case, now y will have the same value as the one
+// p is pointing to (aka 'x')
+</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="c1">// Let's say now you want to access the variable that is
+// stored next to x.
+</span><span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>We can not only copy the contents of the variable that the pointer is pointing to, but we can also access memory boxes that are around the variable box. For that we can use an <em>offset</em>, that will help us move around memory.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Let's say now you want to access the variable that is
+// stored next to x.
+</span><span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<span class="c1">// The offset is 1 in this case.
+</span></code></pre></div></div>
+
+<p>We can also <strong>modify</strong> the value of the memory box stored in the pointer.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Let's change the value of x to 3.
+// We need to modify then it's memory box
+</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="worked-exercise">Worked exercise</h2>
+
+<hr />
+
+<p>Implement a function called <code class="highlighter-rouge">div_mod()</code> that takes in two integers <code class="highlighter-rouge">a</code> and <code class="highlighter-rouge">b</code>, and returns the quotient (<code class="highlighter-rouge">a / b</code>) and the remainder (<code class="highlighter-rouge">a % b</code>).</p>
+
+<p><em>Hint:</em> You <strong>can not</strong> return multiple values directly… How can pointers help?</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+</span>
+<span class="n">_____</span> <span class="nf">div_mod</span><span class="p">(</span> <span class="n">________</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">_______</span> <span class="c1">// Fill in
+</span><span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">div</span><span class="p">,</span> <span class="n">mod</span><span class="p">;</span>
+
+  <span class="c1">// Call your function here...
+</span>  <span class="n">______</span>
+
+  <span class="c1">// Should print: "a / b = 3,  a % b = 4"
+</span>  <span class="n">printf</span><span class="p">(</span><span class="s">"a / b = %d,  a %% b = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">div</span><span class="p">,</span> <span class="n">mod</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="pointers-and-arrays">Pointers and Arrays</h2>
+
+<hr />
+
+<p>Now that we have learnt about pointers, you can use those to work with arrays too. There are two ways we can store the address of the head of the array in a pointer.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Don't forget to initialize the pointer
+</span><span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">my_array</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+
+<span class="c1">// Way 1: getting the address of the first element
+</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">my_array</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="c1">// Way 2: direct assignment
+</span><span class="n">p</span> <span class="o">=</span> <span class="n">my_array</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>We can use offsets to access (and modify) other values of the array.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// We can initialize the values of the array to 0
+</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="o">*</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="o">*</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="o">*</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="o">*</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="exercises">Exercises</h2>
+
+<hr />
+
+<p>In lecture we showed you how to write the <code class="highlighter-rouge">reverse()</code> function to reverse arrays (and as a result, also strings). Rewrite this function using <strong>just</strong> pointer notation with what you learned above.</p>
+
+<p><em>Hint:</em> Use pointers and offsets!</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+</span>
+<span class="kt">void</span> <span class="nf">reverse</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Only strlen may be used from &lt;string.h&gt;
+</span>    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span>  <span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+    <span class="n">______</span> <span class="c1">// Fill in
+</span><span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">1024</span><span class="p">]</span> <span class="o">=</span> <span class="s">"Hello World!"</span><span class="p">;</span>
+
+    <span class="c1">// Expected: Hello World!
+</span>    <span class="n">printf</span><span class="p">(</span><span class="s">"Before: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+
+    <span class="n">reverse</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+
+    <span class="c1">// Expected: !dlorW olleH
+</span>    <span class="n">printf</span><span class="p">(</span><span class="s">"After: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<hr />
+
+<p>Given the following starter code, implement the function <em>findMinMax</em> to return the minimum and maximum values in a given array. Use <strong>only</strong> pointer notation!</p>
+
+<p><em>Hint:</em> You can’t return multiple values directly… How can pointers help?</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include&lt;stdio.h&gt;
+</span>
+<span class="n">___</span> <span class="nf">findMinMax</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">arr_size</span><span class="p">,</span> <span class="n">_____</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">______</span> <span class="c1">// Fill in
+</span><span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">array</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="n">arr_min</span><span class="p">,</span> <span class="n">arr_max</span><span class="p">;</span>
+
+    <span class="c1">// Call your function...
+</span>    <span class="n">_______</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"min is %d, max is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+
+  </div>
+</article>
+
+<!--content-end-->
+
+    </div>
+  </main>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="nav-button"><span class="nav-icon"></span></label>
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="sidebar">
+    <div class="wrapper">
+      <header class="site-header">
+        <a class="site-title" href="/tutorials/">
+          <h2>CSCA48 Summer 2020</h2>
+          <p class="meta">Tutorial Notes</p>
+        </a>
+      </header>
+      <nav class="site-nav">
+
+<!--navigation-content-begin-->
+<ul>
+  <li><a href="/tutorials/W1/">Week 1</a></li>
+  <li><a href="/tutorials/W2/">Week 2</a></li>
+  <li><a href="/tutorials/W3/">Week 3</a></li>
+  <li><a class="active" href="/tutorials/W4/">Week 4</a></li>
+</ul>
+<h3>Extras</h3>
+<ul>
+  <li><a href="/tutorials/commandline">Command Line</a></li>
+  <li><a href="/tutorials/debug">Debugging</a></li>
+</ul>
+<!--navigation-content-end-->
+
+      </nav>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

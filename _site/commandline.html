@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Using the Command Line</title>
+  <meta name="description" content="Tutorial Notes">
+  <meta name="author" content="Mustafa Quraish">
+  <link rel="stylesheet" href="/tutorials/assets/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Source+Serif+Pro" rel="stylesheet">
+  <link rel="canonical" href="http://localhost:4000/tutorials/commandline">
+  <link rel="alternate" type="application/atom+xml" title="CSCA48 Summer 2020" href="/tutorials/feed.xml">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">
+
+<!--content-begin-->
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title", style="text-align:center;">Using the Command Line</h1>
+  </header>
+  <div class="post-content">
+
+<hr />
+<h2> Contents </h2>
+
+<ul id="markdown-toc">
+  <li><a href="#what-is-the-command-line-and-why-should-i-use-it" id="markdown-toc-what-is-the-command-line-and-why-should-i-use-it">What is the command line, and why should I use it?</a></li>
+  <li><a href="#what-terminal-should-i-use" id="markdown-toc-what-terminal-should-i-use">What terminal should I use?</a>    <ul>
+      <li><a href="#windows" id="markdown-toc-windows">Windows</a></li>
+      <li><a href="#macos--linux" id="markdown-toc-macos--linux">MacOS / Linux</a></li>
+    </ul>
+  </li>
+  <li><a href="#differences-between-terminals" id="markdown-toc-differences-between-terminals">Differences between terminals</a></li>
+  <li><a href="#the-prompt" id="markdown-toc-the-prompt">The Prompt</a></li>
+  <li><a href="#tips-and-tricks" id="markdown-toc-tips-and-tricks">Tips and Tricks</a></li>
+  <li><a href="#navigating-the-file-system" id="markdown-toc-navigating-the-file-system">Navigating the File System</a>    <ul>
+      <li><a href="#pwd" id="markdown-toc-pwd">pwd</a></li>
+      <li><a href="#ls" id="markdown-toc-ls">ls</a></li>
+      <li><a href="#cd" id="markdown-toc-cd">cd</a></li>
+    </ul>
+  </li>
+  <li><a href="#working-with-files" id="markdown-toc-working-with-files">Working with files</a>    <ul>
+      <li><a href="#cp" id="markdown-toc-cp">cp</a></li>
+      <li><a href="#mv" id="markdown-toc-mv">mv</a></li>
+      <li><a href="#rm" id="markdown-toc-rm">rm</a></li>
+      <li><a href="#diff" id="markdown-toc-diff">diff</a></li>
+    </ul>
+  </li>
+  <li><a href="#compiling-and-running-your-code" id="markdown-toc-compiling-and-running-your-code">Compiling and running your Code</a></li>
+</ul>
+
+<hr />
+<h2 id="what-is-the-command-line-and-why-should-i-use-it">What is the command line, and why should I use it?</h2>
+<hr />
+<p>The command line (also called terminal) is an interface where you can directly execute commands on your computer. It allows you to traverse through all your directories, change settings, run programs, <a href="https://www.instructables.com/id/How-to-Watch-Star-Wars-in-Terminal/">watch movies</a> and the list goes on!</p>
+
+<p>As a computer science student, this is going to be an invaluable resource to you. Though it takes some time to get used to the commands, with some practice it offers you more power and speed than a user interface can offer. More importantly, we need it to compile our C code properly.</p>
+
+<p>Once you start your second year courses, you will be expected to be using the command line extensively, so it’s better to give yourself a head start!</p>
+
+<hr />
+
+<h2 id="what-terminal-should-i-use">What terminal should I use?</h2>
+<hr />
+<h3 id="windows">Windows</h3>
+
+<p>If you’re on windows, you have a bunch of options. By default, you should have <code class="highlighter-rouge">Command Prompt</code> installed. If you’re using a recent version of Windows, you should also have <code class="highlighter-rouge">Powershell</code> available to you. These are both Windows-based, and are more than good enough for this course. Of these, I recommend using Powershell, since it has more commands available to you to make your life easier.</p>
+
+<p>Additionally, you can also install the <code class="highlighter-rouge">Ubuntu Subsystem</code> which will give you a Linux-based terminal. This is a lot more powerful than the options above (and what you will be using in your upper year courses). You can find more information <a href="https://answers.microsoft.com/en-us/windows/forum/apps_windows_10-winapps-appscat_books/how-to-access-your-ubuntu-bash-files-in-windows/201bb314-6b3a-4913-83b0-3d38037b9470">here</a> on how to access your files if you choose to use this option. <strong>I highly recommend this if you have the space for it.</strong></p>
+
+<hr />
+<h3 id="macos--linux">MacOS / Linux</h3>
+
+<p>You should have a terminal installed by default, simply called <code class="highlighter-rouge">Terminal</code>. This is Linux-based, and plenty good enough for the rest of your university career. There are alternative terminals you can install - but I don’t recommend going down that rabbit hole just yet - wait till you’re more comfortable using it.</p>
+
+<hr />
+
+<h2 id="differences-between-terminals">Differences between terminals</h2>
+<hr />
+
+<p>Different terminals may have different names for commands that do very similar things. If you are using Command Prompt on Windows, some of these commands may have different names (I’m using a Linux-based terminal).</p>
+
+<p>Powershell should support all the commands here, as well as the ones from Command Prompt, which is why I suggest using it. When in doubt - Google is your friend!</p>
+
+<hr />
+<h2 id="the-prompt">The Prompt</h2>
+<hr />
+
+<p>The prompt is the line that shows up when you open up a new terminal, and this is where you run your command. Here’s an example of my prompt:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mustafa@xps:~/Desktop<span class="nv">$ </span>
+</code></pre></div></div>
+
+<p>It usually consists of your username (mustafa), the name of the device (xps), and the current folder the terminal is in (Desktop). Your prompt may look different, but it’ll usually have the same format as this.</p>
+
+<hr />
+<h2 id="tips-and-tricks">Tips and Tricks</h2>
+<hr />
+
+<ul>
+  <li>
+    <p>Use <code class="highlighter-rouge">up</code>/<code class="highlighter-rouge">down</code> arrow keys to access the previous commands you typed in. You don’t need to type everything in all the time!</p>
+  </li>
+  <li>
+    <p>Use <code class="highlighter-rouge">Ctrl+R</code> to search for a previous command you used. (This is very handy when you’ve run a bunch of stuff and don’t wan’t to keep pressing up)</p>
+  </li>
+  <li>
+    <p>Pressing <code class="highlighter-rouge">tab</code> will auto-complete the names of files/folders in the current directory.</p>
+  </li>
+  <li>
+    <p>On Powershell, right-clicking can be used to copy and paste text. On Mac, use <code class="highlighter-rouge">Cmd+C</code> and <code class="highlighter-rouge">Cmd+V</code>. On Linux, use <code class="highlighter-rouge">Ctrl+Shift+C</code> and <code class="highlighter-rouge">Ctrl+Shift+V</code>.</p>
+  </li>
+  <li>
+    <p>If you don’t know what a command does, or how to use is, run <code class="highlighter-rouge">man &lt;command name&gt;</code> in your terminal to get information on how it works!</p>
+  </li>
+</ul>
+
+<hr />
+<h2 id="navigating-the-file-system">Navigating the File System</h2>
+<hr />
+
+<p>The first thing you need to realize about using the terminal is that there is a concept of a ‘current directory’. Much like the File Explorer, the terminal starts off in some directory. Pretty much all the time, you’re going to want to be moving around different folders (for whatever reason). Here we’ll talk about some commands that help you do this.</p>
+
+<hr />
+<h3 id="pwd">pwd</h3>
+
+<p>The command <code class="highlighter-rouge">pwd</code> (<strong>p</strong>rint <strong>w</strong>orking <strong>d</strong>irectory) prints out the full path to the directory your terminal is currently in (called the working directory). For example, if I run the command while the terminal is opened on my Desktop</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mustafa@xps:~/Desktop<span class="nv">$ </span><span class="nb">pwd</span>
+/home/mustafa/Desktop
+</code></pre></div></div>
+
+<p><em>Note: Command Prompt doesn’t have a nice equivalent to this. You can use <code class="highlighter-rouge">cd</code>, however this command is not meant for just this. More on this below.</em></p>
+
+<hr />
+<h3 id="ls">ls</h3>
+
+<p>The command <code class="highlighter-rouge">ls</code> (<strong>l</strong>i<strong>s</strong>t) lists out the contents of the current (working) directory.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mustafa@xps:~<span class="nv">$ </span><span class="nb">ls
+</span>Desktop       Downloads
+Documents     Pictures
+...
+</code></pre></div></div>
+<p><em>Note: The equivalent to this on Command Prompt is <code class="highlighter-rouge">dir</code></em></p>
+
+<p>You can additionally also give it the name of a directory, and it will list you the contents of it.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mustafa@xps:~<span class="nv">$ </span><span class="nb">ls </span>Desktop
+Folder1       Folder3
+Folder2       Folder4
+...
+</code></pre></div></div>
+
+<hr />
+<h3 id="cd">cd</h3>
+
+<p>The command <code class="highlighter-rouge">cd</code> (<strong>c</strong>hange <strong>d</strong>irectory) lets you change the current working directory.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mustafa@xps:~<span class="nv">$ </span><span class="nb">cd </span>Desktop
+mustafa@xps:~/Desktop<span class="nv">$ </span>
+</code></pre></div></div>
+
+<p>You can use <code class="highlighter-rouge">.</code> to refer to the current directory, and <code class="highlighter-rouge">..</code> to refer to the parent directory</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mustafa@xps:~/Desktop/Folder1<span class="nv">$ </span><span class="nb">cd</span> ..
+mustafa@xps:~/Desktop<span class="nv">$ </span>
+</code></pre></div></div>
+
+<hr />
+<h2 id="working-with-files">Working with files</h2>
+<hr />
+
+<h3 id="cp">cp</h3>
+
+<p>The command <code class="highlighter-rouge">cp</code> (<strong>c</strong>o<strong>p</strong>y) can be used to copy a file. It takes in 2 parameters, the first is a path to the file you want to copy, the second is the location you want to copy it to (optionally with a new filename). You will need to include the <code class="highlighter-rouge">-r</code> flag if you want to copy directories with all the contents inside them.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mustafa@xps:~/Desktop<span class="nv">$ </span><span class="nb">ls
+</span>file1.c       folder
+
+<span class="c"># Copying a file to the same directory with a different name</span>
+mustafa@xps:~/Desktop<span class="nv">$ </span>cp file1.c file1.c
+mustafa@xps:~/Desktop<span class="nv">$ </span><span class="nb">ls
+</span>file1.c       file2.c       folder
+
+<span class="c"># Copying the file to a different directory, same name</span>
+mustafa@xps:~/Desktop<span class="nv">$ </span>cp file.c folder/
+mustafa@xps:~/Desktop<span class="nv">$ </span><span class="nb">ls </span>folder
+file1.c
+</code></pre></div></div>
+<hr />
+
+<h3 id="mv">mv</h3>
+
+<p>The command <code class="highlighter-rouge">mv</code> (<strong>m</strong>o<strong>v</strong>e) can be used to move a file from one location to another. It is used similar to <code class="highlighter-rouge">cp</code>. Files are renamed this way using the terminal.</p>
+
+<hr />
+
+<h3 id="rm">rm</h3>
+
+<p>The command <code class="highlighter-rouge">rm</code> (<strong>r</strong>e<strong>m</strong>ove) can be used to delete a file. <strong>Be careful with this. It is permanent and the file cannot be recovered</strong>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Don't do something like this if you don't have a backup!</span>
+mustafa@xps:~/Desktop/A1<span class="nv">$ </span>rm turtle.c
+</code></pre></div></div>
+<hr />
+
+<h3 id="diff">diff</h3>
+
+<p>The command <code class="highlighter-rouge">diff</code> (<strong>diff</strong>erence) is used to compare two plaintext files (<code class="highlighter-rouge">.txt</code>, <code class="highlighter-rouge">.c</code>, <code class="highlighter-rouge">.py</code>, …). It tells you the differences between them if any exist. If the files are the same, you will get no output.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Comparing a file with itself</span>
+mustafa@xps:~/Desktop<span class="nv">$ </span>diff file1.c file2.c
+mustafa@xps:~/Desktop<span class="nv">$ </span>
+
+<span class="c"># Comparing different files</span>
+mustafa@xps:~/Desktop<span class="nv">$ </span>diff file1.c file2.c
+1c1
+&lt; This is file 1
+<span class="nt">---</span>
+<span class="o">&gt;</span> This is file 2
+</code></pre></div></div>
+
+<p><em>Note: The output you get in case of the files being different may not be the same on Windows</em></p>
+
+<hr />
+<h2 id="compiling-and-running-your-code">Compiling and running your Code</h2>
+<hr />
+
+<p>First, make sure that you have <code class="highlighter-rouge">gcc</code> in your <code class="highlighter-rouge">PATH</code>. If you are still unsure how to do this, detailed instructions (for Windows) can be found <a href="http://www.codebind.com/cprogramming/install-mingw-windows-10-gcc/">here</a>.</p>
+
+<p>Now, navigate to the directory where your code is located. You can compile and run your code as follows:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mustafa@xps:~/Desktop<span class="nv">$ </span>gcc file.c
+mustafa@xps:~/Desktop<span class="nv">$ </span>./a.out      <span class="c"># (.\a.exe on Command Prompt)</span>
+</code></pre></div></div>
+
+<p>Note that by default <code class="highlighter-rouge">gcc</code> calls the compiled executable <code class="highlighter-rouge">a.out</code> or <code class="highlighter-rouge">a.exe</code>. If you want to change the name of the output file, use the <code class="highlighter-rouge">-o</code> flag, immediately followed by the desired name.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mustafa@xps:~/Desktop<span class="nv">$ </span>gcc file.c <span class="nt">-o</span> myProgram
+mustafa@xps:~/Desktop<span class="nv">$ </span>./myProgram  <span class="c"># (.\myProgram.exe on Command Prompt)</span>
+</code></pre></div></div>
+
+<p>Additional flags can be added as well, for example:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mustafa@xps:~/Desktop<span class="nv">$ </span>gcc <span class="nt">-Wall</span> <span class="nt">-Werror</span> file.c <span class="nt">-o</span> myProgram <span class="nt">-lm</span>
+</code></pre></div></div>
+<p>We will talk about what they do as we go on in the course.</p>
+
+
+  </div>
+</article>
+
+<!--content-end-->
+
+    </div>
+  </main>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="nav-button"><span class="nav-icon"></span></label>
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="sidebar">
+    <div class="wrapper">
+      <header class="site-header">
+        <a class="site-title" href="/tutorials/">
+          <h2>CSCA48 Summer 2020</h2>
+          <p class="meta">Tutorial Notes</p>
+        </a>
+      </header>
+      <nav class="site-nav">
+
+<!--navigation-content-begin-->
+<ul>
+  <li><a href="/tutorials/W1/">Week 1</a></li>
+  <li><a href="/tutorials/W2/">Week 2</a></li>
+  <li><a href="/tutorials/W3/">Week 3</a></li>
+  <li><a href="/tutorials/W4/">Week 4</a></li>
+</ul>
+<h3>Extras</h3>
+<ul>
+  <li><a class="active" href="/tutorials/commandline">Command Line</a></li>
+  <li><a href="/tutorials/debug">Debugging</a></li>
+</ul>
+<!--navigation-content-end-->
+
+      </nav>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

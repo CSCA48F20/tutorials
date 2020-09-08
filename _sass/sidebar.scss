@@ -1,0 +1,49 @@
+// Define defaults for each variable.
+
+// Font settings
+$base-font-family:       "-apple-system", BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$base-font-weight:       400 !default;
+$site-header-font-size:  26px !default; //align the site header to the available space in the sidebar
+$base-font-size:         18px !default;
+$small-font-size:        15px !default;
+$extra-small-font-size:  12px !default;
+$large-line-height:      1.8 !default;
+$base-line-height:       1.5 !default;
+$small-line-height:      1.2 !default;
+
+// Text decoration for links
+$link-text-decoration:   none !default;
+
+// Color settings - Git Hub blue: #2b7bb9, Reveal.js theme solarized blue: #268bd2
+$text-color:             #333 !default;
+$background-color:       rgb(253, 253, 253) !default; // should match $nav-icon-box-shadow
+$nav-icon-box-shadow:    0px 0px 3px 3px rgba(253, 253, 253, 0.3) !default; // should match background-color
+$nav-icon-background:    rgba(0, 0, 0, 0.3) !default;
+$brand-color:            #268bd2 !default;
+$brand-color-light:      lighten($brand-color, 40%) !default;
+$brand-color-dark:       darken($brand-color, 25%) !default;
+$grey-color:             #828282 !default;
+$grey-color-light:       lighten($grey-color, 40%) !default;
+$grey-color-dark:        darken($grey-color, 25%) !default;
+
+// Layout settings
+$spacing-unit:           30px !default;
+$content-max-width:      750px !default;
+$nav-button-max-width:   799px !default;
+$logo-height:            80px !default;
+$box-shadow:             0px 1px 4px 0px rgba(0,0,0,0.25) !default;
+$box-shadow-img-pre:     $box-shadow !default;
+$base-border-radius:     3px !default;
+$table-text-align:       left !default;
+
+// Import partials
+@import
+  "sidebar/1-normalize",
+  "sidebar/2-base",
+  "sidebar/3-helper-classes",
+  "sidebar/4-syntax-highlighting",
+  "sidebar/5-layout-sidebar",
+  "sidebar/6-layout-content",
+  "sidebar/7-layout-nav-icon",
+  "sidebar/8-media-queries"
+;
