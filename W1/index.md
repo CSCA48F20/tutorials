@@ -8,8 +8,6 @@ No tutorial in the first week of class! However, make sure you've done the follo
 
  - Set up your compiler, added it to your PATH. Instructions for this can be found in the course notes, or [here](http://www.codebind.com/cprogramming/install-mingw-windows-10-gcc/).
 
- - Looked at and completed exercise 0 (once it comes out).
-
  - Got yourself a good code editor (I highly recommend [vscode](https://code.visualstudio.com/)). Avoid using
     IDEs since you're going to have to get used to the command line eventually - better now than later! A good
     code editor can help you:
