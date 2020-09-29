@@ -140,3 +140,25 @@ Sum of numbers from 1 to 10 is 55
 *Note that we only computed the sum up till `10` because we changed `n` in memory!*
 
 ---
+## Using LLDB (a quicker guide)
+---
+
+For Mac iOS users, a good debugger that comes installed with Xcode is [LLDB](https://lldb.llvm.org/use/tutorial.html). To run it, you have to follow similar steps.
+
+```
+gcc -g -Wall -Werror test.c
+```
+Once you compile, you can run lldb,
+```
+lldb ./a.out
+```
+The following prompt will appear:
+```
+(lldb) target create "./a.out"
+Current executable set to '/Users/angelazb/Documents/a.out' (x86_64).
+(lldb) 
+```
+
+I found this [cheat sheet](https://lldb.llvm.org/use/map.html) useful, if you want to know the equivalents from GDB in LLDB.
+
+---
