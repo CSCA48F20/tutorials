@@ -1,7 +1,7 @@
 ---
-title: Week 3 Tutorial
-sidebar: 3
-sidebar-title: Week 3
+title: Week 4 Tutorial
+sidebar: 4
+sidebar-title: Week 4
 ---
 
 
