@@ -37,7 +37,6 @@ Let's try this example and draw the diagram of the memory model for the followin
 
 int sum_times(int i, int sum) {
     sum = sum + 10*i;
-    printf("Current sum is %d\n", sum);
     return sum;      
 }
 
@@ -50,9 +49,10 @@ int main() {
         result = 2 * sum_times(i, result);
     }
 
+    # Draw the memory model at this point!
+
     printf("result %d", result);
 
-    # Draw the memory model at this point!
     return 0;
 }
 
