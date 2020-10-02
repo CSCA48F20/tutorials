@@ -15,7 +15,7 @@ sidebar-title: Week 4
 
 ---
 
-Last week we learnt about the memory modeil in C, for this week, we want to do another example to make sure we have it down :)
+Last week we learnt about the memory model in C, for this week, we want to do another example to make sure we have it down :)
 
 Remember that lockers are created in memory automatically for:
 - Declared variables
