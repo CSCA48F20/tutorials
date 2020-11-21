@@ -71,7 +71,7 @@ For an undirected graph, the **neighbourhood** of a node **v** is the set of all
 
 For a directed graph, there exists an **out-neighbourhood** and an **in-neighbourhood**.
 
-<span style="color:cornflowerblue">_Example:_</span> In **G<sub>2</sub>**, the in-neighbourhood of @Brian is the set of the nodes {@UTSC, @Uoft, @Angela} and the out-neighbourhood of @Brian is the set of the nodes {@UTSC, @Angela}
+<span style="color:cornflowerblue">_Example:_</span> In **G<sub>2</sub>**, the out-neighbourhood of @Brian is the set of the nodes {@UTSC, @Uoft, @Angela} and the in-neighbourhood of @Brian is the set of the nodes {@UTSC, @Angela}
 
 ## Degree
 
@@ -81,7 +81,7 @@ For an undirected graph, the **degree** of a node **v** is the size (number of n
 
 For a directed graph, the node **v** has an **in-degree** and an **out-degree**.
 
-<span style="color:cornflowerblue">_Example:_</span> In **G<sub>2</sub>**, the in-degree of @nytimes is 1 and the out-degree is 3.
+<span style="color:cornflowerblue">_Example:_</span> In **G<sub>2</sub>**, the out-degree of @nytimes is 1 and the in-degree is 3.
 
 ## Path
 
